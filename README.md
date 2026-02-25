@@ -9,3 +9,19 @@
 
   Run `npm run dev` to start the development server.
   "# SmartPick-frontend" 
+
+## Firebase Hosting Deploy
+
+1. Create a production env file:
+   Copy `.env.production.example` to `.env.production` and set:
+   `VITE_API_BASE_URL=https://<your-backend-domain>/api`
+
+2. Build:
+   `npm run build`
+
+3. Deploy:
+   `npm run deploy:firebase`
+
+Notes:
+- This project uses React Router. `firebase.json` already includes SPA rewrites to `index.html`.
+- Vite `/api` proxy works only in local dev. On Firebase, API URL must come from `VITE_API_BASE_URL`.
