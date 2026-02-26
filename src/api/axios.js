@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || "/api";
+const envBaseURL = import.meta.env.VITE_API_BASE_URL || "/api";
+const isLocalApiTarget = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?/i.test(envBaseURL);
+const baseURL = import.meta.env.PROD && isLocalApiTarget ? "/api" : envBaseURL;
 
 // increase timeout to 60 seconds
 const timeout =

@@ -60,6 +60,10 @@ export function RegisterPage({ onRegister, onSwitchToLogin }) {
 
       onRegister(res.data.user);
     } catch (err) {
+      if (err?.isConfigError) {
+        setFormError(err.message);
+        return;
+      }
       setFormError(err.response?.data?.message || "Registration failed");
     } finally {
       setIsLoading(false);

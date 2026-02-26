@@ -49,6 +49,10 @@ export function LoginPage({ onLogin, onSwitchToRegister }) {
       localStorage.setItem("user", JSON.stringify(res.data.user));
       onLogin(res.data.user);
     } catch (err) {
+      if (err?.isConfigError) {
+        setFormError(err.message);
+        return;
+      }
       setFormError(err.response?.data?.message || "Login failed");
     } finally {
       setIsLoading(false);
